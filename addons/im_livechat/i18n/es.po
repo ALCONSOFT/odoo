@@ -10,8 +10,8 @@
 # Martin Trigaux, 2023
 # Evgeniia Kotova, 2023
 # Fernanda Alvarez, 2023
-# Larissa Manderfeld, 2023
 # Wil Odoo, 2023
+# Larissa Manderfeld, 2024
 # 
 msgid ""
 msgstr ""
@@ -19,7 +19,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-17 08:00+0000\n"
 "PO-Revision-Date: 2023-01-17 11:05+0000\n"
-"Last-Translator: Wil Odoo, 2023\n"
+"Last-Translator: Larissa Manderfeld, 2024\n"
 "Language-Team: Spanish (https://app.transifex.com/odoo/teams/41243/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -144,7 +144,7 @@ msgstr "1 es lunes, 7 es domingo"
 #. module: im_livechat
 #: model_terms:ir.ui.view,arch_db:im_livechat.chatbot_test_script_page
 msgid "<i class=\"fa fa-fw fa-arrow-right\"/>Back to edit mode"
-msgstr ""
+msgstr "<i class=\"fa fa-fw fa-arrow-right\"/>Volver al modo de edición"
 
 #. module: im_livechat
 #: model_terms:ir.ui.view,arch_db:im_livechat.im_livechat_channel_view_kanban
@@ -691,6 +691,10 @@ msgid ""
 "installed on your server, otherwise, the countries of the rule will not be "
 "taken into account."
 msgstr ""
+"Defina reglas para su canal de soporte en vivo. Puede aplicar una acción "
+"para el URL dado y por país.<br/>Para identificar el país, GeoIP debe estar "
+"instalado en su servidor, de lo contrario, los países de la regla no se "
+"tomarán en cuenta."
 
 #. module: im_livechat
 #: model:ir.model.fields,help:im_livechat.field_im_livechat_channel_rule__auto_popup_timer
@@ -699,6 +703,9 @@ msgid ""
 "selected action must be 'Open automatically' otherwise this parameter will "
 "not be taken into account."
 msgstr ""
+"Retraso (en segundos) para abrir automáticamente la ventana de conversación."
+" Nota: la acción seleccionada debe ser \"Abrir automáticamente\", de lo "
+"contrario este parámetro no se tendrá en cuenta."
 
 #. module: im_livechat
 #. odoo-javascript
@@ -946,7 +953,7 @@ msgstr "Dirección de correo electrónico no válida"
 #. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_chatbot_script_step__is_forward_operator_child
 msgid "Is Forward Operator Child"
-msgstr ""
+msgstr "Es un operador transmitido inferior"
 
 #. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_res_users_settings__is_discuss_sidebar_category_livechat_open
@@ -1107,6 +1114,10 @@ msgid ""
 "your company livechat session performance. Extract information about the "
 "missed sessions, the audience, the duration of a session, etc."
 msgstr ""
+"Las estadísticas del canal de asistencia del Chat en vivo le permiten "
+"revisar y analizar con facilidad el rendimiento de la sesión en chat en vivo"
+" de su empresa. Obtenga información sobre las sesiones perdidas, el público,"
+" la duración de una sesión, etc."
 
 #. module: im_livechat
 #: model:ir.model,name:im_livechat.model_im_livechat_report_operator
@@ -1205,7 +1216,7 @@ msgstr "No se ha encontrado historial"
 #: code:addons/im_livechat/static/src/legacy/widgets/public_livechat_window/public_livechat_window.xml:0
 #, python-format
 msgid "No operator available"
-msgstr ""
+msgstr "No hay operadores disponibles"
 
 #. module: im_livechat
 #. odoo-javascript
@@ -1345,7 +1356,7 @@ msgstr "Teléfono"
 #: code:addons/im_livechat/models/chatbot_script_step.py:0
 #, python-format
 msgid "Please call me on: "
-msgstr ""
+msgstr "Por favor, llámeme al:"
 
 #. module: im_livechat
 #. odoo-javascript
@@ -1359,12 +1370,12 @@ msgstr "Por favor revisa tu conexión a internet."
 #: code:addons/im_livechat/models/chatbot_script_step.py:0
 #, python-format
 msgid "Please contact me on: "
-msgstr ""
+msgstr "Por favor, contácteme por:"
 
 #. module: im_livechat
 #: model:chatbot.script.step,message:im_livechat.chatbot_script_welcome_step_just_looking
 msgid "Please do! If there is anything we can help with, let us know"
-msgstr ""
+msgstr "Por favor, ¡hágalo! Si hay algo en lo que podamos ayudarle, díganos"
 
 #. module: im_livechat
 #. odoo-javascript
@@ -1495,7 +1506,7 @@ msgstr "Restablecer a los colores predeterminados"
 #: code:addons/im_livechat/static/src/legacy/public_livechat_chatbot.xml:0
 #, python-format
 msgid "Restart"
-msgstr ""
+msgstr "Reiniciar"
 
 #. module: im_livechat
 #. odoo-javascript
@@ -1578,7 +1589,7 @@ msgstr "Ver últimas 15 páginas visitadas"
 #: code:addons/im_livechat/static/src/public_models/public_livechat_window.js:0
 #, python-format
 msgid "Select an option above"
-msgstr ""
+msgstr "Seleccione una de las opciones anteriores"
 
 #. module: im_livechat
 #. openerp-web
@@ -1650,7 +1661,7 @@ msgstr "Mostrar"
 #. module: im_livechat
 #: model:ir.model.fields,help:im_livechat.field_chatbot_script_step__triggering_answer_ids
 msgid "Show this step only if all of these answers have been selected."
-msgstr ""
+msgstr "Muestre este paso sólo si se han seleccionado todas estas respuestas."
 
 #. module: im_livechat
 #: model:ir.model.fields.selection,name:im_livechat.selection__im_livechat_channel_rule__action__display_button_and_text
@@ -1735,6 +1746,9 @@ msgid ""
 "The visitor will be redirected to this link upon clicking the option (note "
 "that the script will end if the link is external to the livechat website)."
 msgstr ""
+"Se redirigirá al visitante a este enlace cuando haga clic en la opción (tome"
+" en cuenta que el guion terminará si el enlace es externo al sitio web del "
+"chat en vivo)."
 
 #. module: im_livechat
 #: model_terms:ir.actions.act_window,help:im_livechat.rating_rating_action_livechat
@@ -1875,7 +1889,7 @@ msgstr "Respuesta del usuario"
 #. module: im_livechat
 #: model:ir.model.fields,field_description:im_livechat.field_chatbot_message__user_raw_answer
 msgid "User's raw answer"
-msgstr ""
+msgstr "Respuesta bruta del usuario"
 
 #. module: im_livechat
 #. odoo-python
@@ -1922,7 +1936,7 @@ msgstr "Mensaje de bienvenida"
 #. module: im_livechat
 #: model:chatbot.script.step,message:im_livechat.chatbot_script_welcome_step_welcome
 msgid "Welcome to CompanyName ! 👋"
-msgstr ""
+msgstr "¡Bienvenido a CompanyName! 👋"
 
 #. module: im_livechat
 #: model:chatbot.script.step,message:im_livechat.chatbot_script_welcome_step_dispatch
@@ -1979,12 +1993,12 @@ msgstr "Tu historial de conversaciones está vacío"
 #: code:addons/im_livechat/static/src/legacy/public_livechat_chatbot.xml:0
 #, python-format
 msgid "chatbot_image"
-msgstr ""
+msgstr "chatbot_image"
 
 #. module: im_livechat
 #: model_terms:ir.ui.view,arch_db:im_livechat.chatbot_script_view_form
 msgid "e.g. \"Meeting Scheduler Bot\""
-msgstr ""
+msgstr "Por ejemplo, \"Bot para programar reuniones\""
 
 #. module: im_livechat
 #: model_terms:ir.ui.view,arch_db:im_livechat.chatbot_script_step_view_form
@@ -2011,7 +2025,7 @@ msgstr "ej. TuSitioWeb.com"
 #: code:addons/im_livechat/static/src/legacy/public_livechat_chatbot.xml:0
 #, python-format
 msgid "is typing"
-msgstr ""
+msgstr "está escribiendo"
 
 #. module: im_livechat
 #. odoo-javascript

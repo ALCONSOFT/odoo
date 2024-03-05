@@ -408,7 +408,7 @@ class Applicant(models.Model):
             'res_model': 'ir.attachment',
             'name': _('Documents'),
             'context': {
-                'default_res_model': 'hr.job',
+                'default_res_model': 'hr.applicant',
                 'default_res_id': self.ids[0],
                 'show_partner_name': 1,
             },
@@ -586,6 +586,7 @@ class Applicant(models.Model):
             'default_work_phone': self.department_id.company_id.phone,
             'form_view_initial_mode': 'edit',
             'default_applicant_id': self.ids,
+            'default_phone': self.partner_phone or self.partner_mobile
         }
         dict_act_window = self.env['ir.actions.act_window']._for_xml_id('hr.open_view_employee_list')
         dict_act_window['context'] = employee_data

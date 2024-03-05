@@ -6,23 +6,36 @@
 # Reinaldo Ramos <reinaldo.ramos@arxi.pt>, 2023
 # Marcelo Pereira <marcelo.pereira@arxi.pt>, 2023
 # Ricardo Martins <ricardo.nbs.martins@gmail.com>, 2023
-# Martin Trigaux, 2023
 # Pedro Filipe <pedro2.10@hotmail.com>, 2023
 # Manuela Silva <mmsrs@sky.com>, 2023
+# Martin Trigaux, 2023
+# Luiz Fernando <lfpsgs@outlook.com>, 2023
+# Vasco Rodrigues, 2024
+# Rita Bastos, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server saas~16.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-17 10:55+0000\n"
+"POT-Creation-Date: 2023-05-25 11:24+0000\n"
 "PO-Revision-Date: 2023-01-17 14:59+0000\n"
-"Last-Translator: Manuela Silva <mmsrs@sky.com>, 2023\n"
+"Last-Translator: Rita Bastos, 2024\n"
 "Language-Team: Portuguese (https://app.transifex.com/odoo/teams/41243/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: pt\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#. module: website_event_questions
+#: model:event.question.answer,name:website_event_questions.event_0_question_2_answer_2
+msgid "A friend"
+msgstr "Um amigo"
+
+#. module: website_event_questions
+#: model:event.question,title:website_event_questions.event_0_question_1
+msgid "Allergies"
+msgstr "Alergias"
 
 #. module: website_event_questions
 #: model:ir.model.fields,field_description:website_event_questions.field_event_question_answer__name
@@ -36,7 +49,7 @@ msgstr "Resposta"
 #: model_terms:ir.ui.view,arch_db:website_event_questions.event_registration_answer_view_pivot
 #: model_terms:ir.ui.view,arch_db:website_event_questions.event_registration_answer_view_tree
 msgid "Answer Breakdown"
-msgstr ""
+msgstr "Desdobramento de Respostas"
 
 #. module: website_event_questions
 #: model:ir.model.fields,field_description:website_event_questions.field_event_question__answer_ids
@@ -48,22 +61,39 @@ msgstr "Respostas"
 #. module: website_event_questions
 #: model:ir.model.fields,field_description:website_event_questions.field_event_question__once_per_order
 msgid "Ask once per order"
-msgstr ""
+msgstr "Perguntar uma vez por encomenda"
 
 #. module: website_event_questions
 #: model:ir.model.fields,field_description:website_event_questions.field_event_registration__registration_answer_ids
 msgid "Attendee Answers"
-msgstr ""
+msgstr "Respostas dos Participantes"
+
+#. module: website_event_questions
+#: model:event.question.answer,name:website_event_questions.event_1_question_0_answer_1
+#: model:event.question.answer,name:website_event_questions.event_5_question_0_answer_1
+#: model:event.question.answer,name:website_event_questions.event_type_data_sports_question_0_answer_1
+msgid "Blog Post"
+msgstr "Publicação no Blogue"
 
 #. module: website_event_questions
 #: model:ir.model.fields,field_description:website_event_questions.field_event_registration_answer__partner_id
 msgid "Booked by"
-msgstr ""
+msgstr "Reservado por"
 
 #. module: website_event_questions
 #: model_terms:ir.actions.act_window,help:website_event_questions.action_event_registration_report
 msgid "Come back once you have registrations to overview answers."
 msgstr ""
+
+#. module: website_event_questions
+#: model:event.question.answer,name:website_event_questions.event_0_question_2_answer_1
+msgid "Commercials"
+msgstr "Anúncios"
+
+#. module: website_event_questions
+#: model:event.question.answer,name:website_event_questions.event_7_question_0_answer_0
+msgid "Consumers"
+msgstr "Consumidores"
 
 #. module: website_event_questions
 #: model:ir.model.fields,field_description:website_event_questions.field_event_question__create_uid
@@ -96,12 +126,12 @@ msgstr "Evento"
 #. module: website_event_questions
 #: model:ir.model,name:website_event_questions.model_event_question
 msgid "Event Question"
-msgstr ""
+msgstr "Pergunta de Evento"
 
 #. module: website_event_questions
 #: model:ir.model,name:website_event_questions.model_event_question_answer
 msgid "Event Question Answer"
-msgstr ""
+msgstr "Resposta a Pergunta de Evento"
 
 #. module: website_event_questions
 #: model:ir.model,name:website_event_questions.model_event_registration
@@ -111,12 +141,12 @@ msgstr "Registos no Evento"
 #. module: website_event_questions
 #: model:ir.model,name:website_event_questions.model_event_registration_answer
 msgid "Event Registration Answer"
-msgstr ""
+msgstr "Resposta de Inscrição de Evento"
 
 #. module: website_event_questions
 #: model:ir.model,name:website_event_questions.model_event_type
 msgid "Event Template"
-msgstr ""
+msgstr "Modelo de evento"
 
 #. module: website_event_questions
 #: model:ir.model.fields,field_description:website_event_questions.field_event_question__event_type_id
@@ -127,6 +157,19 @@ msgstr "Tipo de Evento"
 #: model:ir.model.fields,field_description:website_event_questions.field_event_event__general_question_ids
 msgid "General Questions"
 msgstr "Questões Gerais"
+
+#. module: website_event_questions
+#: model:event.question,title:website_event_questions.event_7_question_1
+msgid "How did you hear about us ?"
+msgstr "Como ouviste falar de nós?"
+
+#. module: website_event_questions
+#: model:event.question,title:website_event_questions.event_0_question_2
+#: model:event.question,title:website_event_questions.event_1_question_0
+#: model:event.question,title:website_event_questions.event_5_question_0
+#: model:event.question,title:website_event_questions.event_type_data_sports_question_0
+msgid "How did you learn about this event?"
+msgstr "Como soubeste deste evento?"
 
 #. module: website_event_questions
 #: model:ir.model.fields,field_description:website_event_questions.field_event_question__id
@@ -142,6 +185,9 @@ msgid ""
 "propagated to every attendees.If not it will be asked for every attendee of "
 "a reservation."
 msgstr ""
+"Se verdadeiro, esta pergunta apenas será colocada uma vez e o seu valor será"
+" propagado para todos os participantes. Se não, será colocada a cada "
+"participante de uma reserva."
 
 #. module: website_event_questions
 #: model:ir.model.fields,field_description:website_event_questions.field_event_question__write_uid
@@ -166,7 +212,17 @@ msgstr ""
 #. module: website_event_questions
 #: model:ir.model.fields,field_description:website_event_questions.field_event_question__is_mandatory_answer
 msgid "Mandatory Answer"
-msgstr ""
+msgstr "Resposta Obrigatória"
+
+#. module: website_event_questions
+#: model:event.question,title:website_event_questions.event_0_question_0
+msgid "Meal Type"
+msgstr "Tipo de Refeição"
+
+#. module: website_event_questions
+#: model:event.question.answer,name:website_event_questions.event_0_question_0_answer_0
+msgid "Mixed"
+msgstr "Misturado"
 
 #. module: website_event_questions
 #: model_terms:ir.actions.act_window,help:website_event_questions.action_event_registration_report
@@ -178,6 +234,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:website_event_questions.event_type_view_form_inherit_question
 msgid "Once per Order"
 msgstr ""
+
+#. module: website_event_questions
+#: model:event.question.answer,name:website_event_questions.event_0_question_2_answer_0
+msgid "Our website"
+msgstr "O nosso Website"
+
+#. module: website_event_questions
+#: model:event.question.answer,name:website_event_questions.event_0_question_0_answer_2
+msgid "Pastafarian"
+msgstr "Pastafariano"
 
 #. module: website_event_questions
 #: model:ir.model.fields,field_description:website_event_questions.field_event_question_answer__question_id
@@ -197,6 +263,13 @@ msgstr "Tipo de Questão"
 #. odoo-python
 #: code:addons/website_event_questions/models/event_question.py:0
 #, python-format
+msgid "Question cannot be linked to both an Event and an Event Type."
+msgstr ""
+"Questão não pode ser ligada em simultâneo a um Evento e a um Tipo de Evento."
+
+#. module: website_event_questions
+#: code:addons/website_event_questions/models/event_question.py:0
+#, python-format
 msgid "Question cannot belong to both the event category and itself."
 msgstr ""
 
@@ -210,20 +283,37 @@ msgid "Questions"
 msgstr "Perguntas"
 
 #. module: website_event_questions
+#: model:event.question.answer,name:website_event_questions.event_1_question_0_answer_2
+#: model:event.question.answer,name:website_event_questions.event_5_question_0_answer_2
+#: model:event.question.answer,name:website_event_questions.event_type_data_sports_question_0_answer_2
+msgid "Radio Ad"
+msgstr ""
+
+#. module: website_event_questions
 #: model:ir.model.fields,field_description:website_event_questions.field_event_registration_answer__registration_id
 msgid "Registration"
 msgstr "Registo"
 
 #. module: website_event_questions
+#: model:event.question.answer,name:website_event_questions.event_7_question_0_answer_2
+msgid "Research"
+msgstr "Pesquisa"
+
+#. module: website_event_questions
+#: model:event.question.answer,name:website_event_questions.event_7_question_0_answer_1
+msgid "Sales"
+msgstr "Vendas"
+
+#. module: website_event_questions
 #: model_terms:ir.ui.view,arch_db:website_event_questions.event_registration_view_search
 #: model_terms:ir.ui.view,arch_db:website_event_questions.event_registration_view_tree
 msgid "Selected Answers"
-msgstr ""
+msgstr "Respostas selecionadas"
 
 #. module: website_event_questions
 #: model_terms:ir.ui.view,arch_db:website_event_questions.event_registration_answer_view_tree
 msgid "Selected answer"
-msgstr ""
+msgstr "Resposta selecionada"
 
 #. module: website_event_questions
 #: model:ir.model.fields.selection,name:website_event_questions.selection__event_question__question_type__simple_choice
@@ -237,9 +327,16 @@ msgid "Sequence"
 msgstr "Sequência"
 
 #. module: website_event_questions
+#: model:event.question.answer,name:website_event_questions.event_1_question_0_answer_0
+#: model:event.question.answer,name:website_event_questions.event_5_question_0_answer_0
+#: model:event.question.answer,name:website_event_questions.event_type_data_sports_question_0_answer_0
+msgid "Social Media"
+msgstr "Redes Sociais"
+
+#. module: website_event_questions
 #: model:ir.model.fields,field_description:website_event_questions.field_event_event__specific_question_ids
 msgid "Specific Questions"
-msgstr ""
+msgstr "Questões específicas"
 
 #. module: website_event_questions
 #: model_terms:ir.ui.view,arch_db:website_event_questions.event_event_view_form
@@ -249,7 +346,7 @@ msgstr "Estatísticas"
 #. module: website_event_questions
 #: model:ir.model.fields,field_description:website_event_questions.field_event_registration_answer__value_answer_id
 msgid "Suggested answer"
-msgstr ""
+msgstr "Resposta sugerida"
 
 #. module: website_event_questions
 #: model:ir.model.fields.selection,name:website_event_questions.selection__event_question__question_type__text_box
@@ -276,6 +373,21 @@ msgstr "Título"
 #: model_terms:ir.ui.view,arch_db:website_event_questions.event_registration_view_form_inherit_question
 msgid "Type"
 msgstr "Tipo"
+
+#. module: website_event_questions
+#: model:event.question.answer,name:website_event_questions.event_0_question_0_answer_1
+msgid "Vegetarian"
+msgstr ""
+
+#. module: website_event_questions
+#: model:event.question,title:website_event_questions.event_5_question_1
+msgid "What's your Hockey level?"
+msgstr ""
+
+#. module: website_event_questions
+#: model:event.question,title:website_event_questions.event_7_question_0
+msgid "Which field are you working in"
+msgstr ""
 
 #. module: website_event_questions
 #. odoo-python

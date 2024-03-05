@@ -649,6 +649,9 @@ class MailThread(models.AbstractModel):
         for _field_name, (template, post_kwargs) in templates.items():
             if not template:
                 continue
+            # defaults to automated notifications targeting customer
+            # whose answers should be considered as comments
+            post_kwargs.setdefault('message_type', 'auto_comment')
             if isinstance(template, str):
                 self._fallback_lang().message_post_with_view(template, **post_kwargs)
             else:
@@ -726,7 +729,7 @@ class MailThread(models.AbstractModel):
                 bounced_record_done = bounced_record_done or (bounced_record and model.model == bounced_model and bounced_record in rec_bounce_w_email)
 
             # set record as bounced unless already done due to blacklist mixin
-            if bounced_record and not bounced_record_done and issubclass(type(bounced_record), self.pool['mail.thread']):
+            if bounced_record and not bounced_record_done and isinstance(bounced_record, self.pool['mail.thread']):
                 bounced_record._message_receive_bounce(bounced_email, bounced_partner)
 
             if bounced_partner and bounced_message:
@@ -1414,6 +1417,10 @@ class MailThread(models.AbstractModel):
                     part.set_charset('utf-8')
                 encoding = part.get_content_charset()  # None if attachment
 
+                # Correcting MIME type for PDF files
+                if part.get('Content-Type', '').startswith('pdf;'):
+                    part.replace_header('Content-Type', 'application/pdf' + part.get('Content-Type', '')[3:])
+
                 content = part.get_content()
                 info = {'encoding': encoding}
                 # 0) Inline Attachments -> attachments, with a third part in the tuple to match cid / attachment
@@ -1606,12 +1613,22 @@ class MailThread(models.AbstractModel):
                 order='create_date DESC, id DESC',
                 limit=1)
         if parent_ids:
-            msg_dict['parent_id'] = parent_ids.id
-            msg_dict['is_internal'] = parent_ids.subtype_id and parent_ids.subtype_id.internal or False
+            msg_dict.update(self._message_parse_extract_from_parent(parent_ids))
 
         msg_dict.update(self._message_parse_extract_payload(message, save_original=save_original))
         msg_dict.update(self._message_parse_extract_bounce(message, msg_dict))
         return msg_dict
+
+    def _message_parse_extract_from_parent(self, parent_message):
+        """Derive message values from the parent."""
+        if parent_message:
+            parent_is_internal = bool(parent_message.subtype_id and parent_message.subtype_id.internal)
+            parent_is_auto_comment = parent_message.message_type == 'auto_comment'
+            return {
+                'is_internal': parent_is_internal and not parent_is_auto_comment,
+                'parent_id': parent_message.id,
+            }
+        return {}
 
     # ------------------------------------------------------
     # RECIPIENTS MANAGEMENT TOOLS
@@ -1751,7 +1768,7 @@ class MailThread(models.AbstractModel):
           If no partner has been found and/or created for a given emails its
           matching partner is an empty record.
         """
-        if records and issubclass(type(records), self.pool['mail.thread']):
+        if records and isinstance(records, self.pool['mail.thread']):
             followers = records.mapped('message_partner_ids')
         else:
             followers = self.env['res.partner']
@@ -2156,7 +2173,7 @@ class MailThread(models.AbstractModel):
 
     def message_post_with_view(self, views_or_xmlid, **kwargs):
         """ Helper method to send a mail / post a message using a view_id """
-        return self._message_compose_with_view(views_or_xmlid, **kwargs)
+        return self._message_compose_with_view(views_or_xmlid, **dict(kwargs, message_log=False))
 
     def message_post_with_template(self, template_id, email_layout_xmlid=None, auto_commit=False, **kwargs):
         """ Helper method to send a mail with a template
@@ -3403,20 +3420,6 @@ class MailThread(models.AbstractModel):
     # ------------------------------------------------------
     # CONTROLLERS
     # ------------------------------------------------------
-
-    def _get_mail_redirect_suggested_company(self):
-        """ Return the suggested company to be set on the context
-        in case of a mail redirection to the record. To avoid multi
-        company issues when clicking on a link sent by email, this
-        could be called to try setting the most suited company on
-        the allowed_company_ids in the context. This method can be
-        overridden, for example on the hr.leave model, where the
-        most suited company is the company of the leave type, as
-        specified by the ir.rule.
-        """
-        if 'company_id' in self:
-            return self.company_id
-        return False
 
     def _get_mail_thread_data_attachments(self):
         self.ensure_one()

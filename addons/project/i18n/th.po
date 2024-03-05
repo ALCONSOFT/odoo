@@ -13,7 +13,7 @@
 # Khwunchai Jaengsawang <khwunchai.j@ku.th>, 2023
 # Martin Trigaux, 2023
 # Wichanon Jamwutthipreecha, 2023
-# Rasareeyar Lappiam, 2023
+# Rasareeyar Lappiam, 2024
 # 
 msgid ""
 msgstr ""
@@ -21,7 +21,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-25 11:22+0000\n"
 "PO-Revision-Date: 2023-01-17 14:38+0000\n"
-"Last-Translator: Rasareeyar Lappiam, 2023\n"
+"Last-Translator: Rasareeyar Lappiam, 2024\n"
 "Language-Team: Thai (https://app.transifex.com/odoo/teams/41243/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,7 +136,7 @@ msgstr "การวิเคราะห์งานของ %(name)s"
 #: code:addons/project/models/project.py:0
 #, python-format
 msgid "%(name)s's Timesheets"
-msgstr ""
+msgstr "ใบบันทึกเวลาของ%(name)s"
 
 #. module: project
 #. odoo-python
@@ -203,7 +203,7 @@ msgstr "10"
 #: model:ir.model.fields.selection,name:project.selection__project_task__repeat_day__11
 #: model:ir.model.fields.selection,name:project.selection__project_task_recurrence__repeat_day__11
 msgid "11"
-msgstr ""
+msgstr "11"
 
 #. module: project
 #: model:ir.model.fields.selection,name:project.selection__project_task__repeat_day__12
@@ -245,7 +245,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:project.selection__project_task__repeat_day__18
 #: model:ir.model.fields.selection,name:project.selection__project_task_recurrence__repeat_day__18
 msgid "18"
-msgstr ""
+msgstr "18"
 
 #. module: project
 #: model:ir.model.fields.selection,name:project.selection__project_task__repeat_day__19
@@ -317,7 +317,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:project.selection__project_task__repeat_day__30
 #: model:ir.model.fields.selection,name:project.selection__project_task_recurrence__repeat_day__30
 msgid "30"
-msgstr ""
+msgstr "30"
 
 #. module: project
 #: model:ir.model.fields.selection,name:project.selection__project_task__repeat_day__31
@@ -3389,7 +3389,7 @@ msgstr "ไม่มีเหตุการณ์สำคัญ"
 #. module: project
 #: model:ir.model.fields.selection,name:project.selection__report_project_task_user__rating_last_text__none
 msgid "No Rating yet"
-msgstr ""
+msgstr "ยังไม่มีคะแนน"
 
 #. module: project
 #. odoo-python
@@ -3498,7 +3498,7 @@ msgstr "จํานวนการดําเนินการ"
 #: model:ir.model.fields.selection,name:project.selection__project_task__repeat_type__after
 #: model:ir.model.fields.selection,name:project.selection__project_task_recurrence__repeat_type__after
 msgid "Number of Repetitions"
-msgstr ""
+msgstr "จำนวนการทำซ้ำ"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_task_type_delete_wizard__tasks_count
@@ -3604,7 +3604,7 @@ msgstr "งานที่เปิดอยู่"
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.project_task_burndown_chart_report_view_search
 msgid "Open tasks"
-msgstr ""
+msgstr "เปิดงาน"
 
 #. module: project
 #. odoo-python
@@ -3782,6 +3782,7 @@ msgid ""
 "Plan resource allocation across projects and estimate deadlines more "
 "accurately"
 msgstr ""
+"วางแผนการจัดสรรทรัพยากรข้ามโปรเจ็กต์และประมาณการกำหนดเวลาได้แม่นยำยิ่งขึ้น"
 
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.edit_project
@@ -4405,7 +4406,7 @@ msgstr ""
 #. module: project
 #: model_terms:ir.ui.view,arch_db:project.view_task_form2
 msgid "Repeat On"
-msgstr ""
+msgstr "ทำซ้ำใน"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_task__repeat_on_month
@@ -4455,7 +4456,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:project.field_project_task__repeat_number
 #: model:ir.model.fields,field_description:project.field_project_task_recurrence__repeat_number
 msgid "Repetitions"
-msgstr ""
+msgstr "การทำซ้ำ"
 
 #. module: project
 #: model:ir.ui.menu,name:project.menu_project_report
@@ -5704,7 +5705,7 @@ msgstr "การใช้งาน"
 #: code:addons/project/static/src/xml/project_task_kanban_examples.xml:0
 #, python-format
 msgid "Use"
-msgstr ""
+msgstr "ใช้"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_project__alias_enabled

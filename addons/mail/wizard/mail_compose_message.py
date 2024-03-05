@@ -123,6 +123,7 @@ class MailComposer(models.TransientModel):
     active_domain = fields.Text('Active domain', readonly=True)
     # characteristics
     message_type = fields.Selection([
+        ('auto_comment', 'Automated Targeted Notification'),
         ('comment', 'Comment'),
         ('notification', 'System notification')],
         'Type', required=True, default='comment',
@@ -556,7 +557,7 @@ class MailComposer(models.TransientModel):
             blacklist = {x[0] for x in self._cr.fetchall()}
             if not blacklist:
                 return blacklisted_rec_ids
-            if issubclass(type(self.env[self.model]), self.pool['mail.thread.blacklist']):
+            if isinstance(self.env[self.model], self.pool['mail.thread.blacklist']):
                 targets = self.env[self.model].browse(mail_values_dict.keys()).read(['email_normalized'])
                 # First extract email from recipient before comparing with blacklist
                 blacklisted_rec_ids.update(target['id'] for target in targets

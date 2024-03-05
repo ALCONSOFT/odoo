@@ -24,7 +24,7 @@
 # Iran Villalobos López, 2023
 # Patricia Gutiérrez Capetillo <pagc@odoo.com>, 2023
 # Pedro M. Baeza <pedro.baeza@tecnativa.com>, 2023
-# Larissa Manderfeld, 2023
+# Larissa Manderfeld, 2024
 # 
 msgid ""
 msgstr ""
@@ -32,7 +32,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-25 12:35+0000\n"
 "PO-Revision-Date: 2023-01-17 10:59+0000\n"
-"Last-Translator: Larissa Manderfeld, 2023\n"
+"Last-Translator: Larissa Manderfeld, 2024\n"
 "Language-Team: Spanish (https://app.transifex.com/odoo/teams/41243/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -6116,6 +6116,8 @@ msgid ""
 "\n"
 "Keeps track of all appointments related to applicants.\n"
 msgstr ""
+"\n"
+"Mantiene un registro de todas las citas relacionadas con los solicitantes.\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_ke_hr_payroll_bik
@@ -6782,6 +6784,21 @@ msgid ""
 "of recall defined. You can define different policies for different companies.\n"
 "\n"
 msgstr ""
+"\n"
+"Módulo para automatizar cartas para facturas no pagadas, con recordatorios de diferentes niveles.\n"
+"=========================================================================\n"
+"\n"
+"Puede definir los diferentes niveles de recordatorio a través del menú:\n"
+"---------------------------------------------------------------\n"
+"    Configuración / Recordatorio / Niveles de recordatorio\n"
+"\n"
+"Una vez que se haya definido, puede imprimir recordatorios automáticamente cada día. Solo tiene que hacer clic en el menú:\n"
+"------------------------------------------------------------------------------------------------------\n"
+"    Recordatorio del pago / Enviar correo y cartas\n"
+"\n"
+"Generará un PDF, enviará un correo o puede configurar las actividades según los diferentes niveles\n"
+"de recordatorio que defina. Puede definir diferentes políticas para diferentes empresas.\n"
+"\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_account_bank_statement_import_camt
@@ -7263,6 +7280,41 @@ msgid ""
 "\n"
 "  * Those operations can be done with multiple checks at once\n"
 msgstr ""
+"\n"
+"Gestión de cheques propios\n"
+"---------------------\n"
+"\n"
+"Extiende el módulo \"Impresión de cheques\" para gestionar cheques propios con más funciones:\n"
+"\n"
+"* Permitir el uso de cheques propios que no se imprimen pero se llenan de forma manual por el usuario\n"
+"* Permitir el uso de cheques electrónicos o diferidos\n"
+"  * Deshabilitar la impresión\n"
+"  * Establecer el número del cheque de forma manual por parte del usuario \n"
+"* Agregar una \"fecha de cobro del cheque\" opcional para cheques con fecha posterior (pagos diferidos)\n"
+"* Agregar un menú para realizar un seguimiento de sus propios cheques\n"
+"\n"
+"Gestión de cheques de externos\n"
+"-----------------------------\n"
+"\n"
+"Agregamos la nueva función \"Gestión de cheques de externos\".\n"
+"\n"
+"Se agregaron dos métodos de pago principales:\n"
+"\n"
+"* Cheques de un externo nuevo:\n"
+"\n"
+"  * Los pagos de este método de pago representan el cheque que recibe de un cliente cuando le pagan (de una factura o un pago manual)\n"
+"\n"
+"* Cheque de un externo existente.\n"
+"\n"
+"  * Los pagos de este método de pago son para rastrear los movimientos del cheque, por ejemplo:\n"
+"\n"
+"    * Usar un cheque para pagarle a un proveedor\n"
+"    * Depositar el cheque en el banco\n"
+"    * Obtener una devolución del cheque del banco (rechazo)\n"
+"    * Obtener una devolución del cheque de un proveedor (un rechazo o devolución)\n"
+"    * Transferir el cheque de un diario de cheques de externos a otro (de una tienda a otra)\n"
+"\n"
+"  * Esas operaciones se pueden realizar con múltiples cheques a la vez \n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_mrp_workorder_plm
@@ -9650,6 +9702,10 @@ msgid ""
 "\n"
 "Allows to prepare batches depending on their carrier\n"
 msgstr ""
+"\n"
+"Este módulo es el enlace entre las aplicaciones de recolección por lotes y transportista.\n"
+"\n"
+"Permite preparar lotes dependiendo del transportista\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_approvals
@@ -17490,7 +17546,7 @@ msgstr "Gastos de envío"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_delivery_stock_picking_batch
 msgid "Delivery Stock Picking Batch"
-msgstr ""
+msgstr "Recolección por lotes del stock de entrega"
 
 #. module: base
 #: model:ir.model,name:base.model_ir_demo
@@ -18415,7 +18471,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,summary:base.module_l10n_pe_edi_stock
 msgid "Electronic Delivery Note for Peru (OSE method) and UBL 2.1"
-msgstr ""
+msgstr "Nota electrónica de entrega para Perú (método OSE) y UBL 2.1"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_l10n_pe_edi_stock_20
@@ -18507,7 +18563,7 @@ msgstr "Salario por hora del empleado"
 #: model:ir.module.module,shortdesc:base.module_hr_hourly_cost
 #: model:ir.module.module,summary:base.module_hr_hourly_cost
 msgid "Employee Hourly Wage"
-msgstr ""
+msgstr "Salario por hora del empleado"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_hr_presence
@@ -22824,7 +22880,7 @@ msgstr "Precio en muelle en la orden de fabricación"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_mrp_subonctracting_landed_costs
 msgid "Landed Costs With Subcontracting order"
-msgstr ""
+msgstr "Coste en destino con una orden de subcontratación"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_mrp_landed_costs
@@ -34099,7 +34155,7 @@ msgstr "Esta ventana"
 #. module: base
 #: model:ir.model.fields,help:base.field_res_partner_bank__allow_out_payment
 msgid "This account can be used for outgoing payments"
-msgstr ""
+msgstr "Esta cuenta se puede usar para pagos salientes"
 
 #. module: base
 #. odoo-python
@@ -35539,6 +35595,8 @@ msgid ""
 "Use discounts, gift card, eWallets and loyalty programs in different sales "
 "channels"
 msgstr ""
+"Use descuentos, tarjetas de regalo, monederos electrónicos y programas de "
+"fidelidad en diferentes canales de venta"
 
 #. module: base
 #: model_terms:ir.actions.act_window,help:base.action_country_group
@@ -36861,6 +36919,16 @@ msgstr ""
 
 #. module: base
 #. odoo-python
+#: code:addons/base/models/res_lang.py:0
+#, python-format
+msgid ""
+"You cannot archive the language in which Odoo was setup as it is used by "
+"automated processes."
+msgstr ""
+"No puede archivar el idioma en el que Odoo fue configurado ya que es "
+"utilizado por procesos automatizados."
+
+#. module: base
 #: code:addons/base/models/res_partner.py:0
 #, python-format
 msgid "You cannot create recursive Partner hierarchies."

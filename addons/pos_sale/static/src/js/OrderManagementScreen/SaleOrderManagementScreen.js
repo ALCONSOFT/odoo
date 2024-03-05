@@ -250,7 +250,7 @@ class SaleOrderManagementScreen extends ControlButtonsMixin(IndependentToOrderSc
                         let remaining_quantity  = new_line.quantity;
                         while (!float_is_zero(remaining_quantity, 6)) {
                             let splitted_line = Orderline.create({}, line_values);
-                            splitted_line.set_quantity(Math.min(remaining_quantity, 1.0));
+                            splitted_line.set_quantity(Math.min(remaining_quantity, 1.0), true);
                             remaining_quantity -= splitted_line.quantity;
                             this.env.pos.get_order().add_orderline(splitted_line);
                         }
@@ -356,6 +356,7 @@ class SaleOrderManagementScreen extends ControlButtonsMixin(IndependentToOrderSc
                     "fiscal_position_id",
                     "amount_total",
                     "amount_untaxed",
+                    "amount_unpaid",
                     "picking_ids",
                     "partner_shipping_id",
                     "partner_invoice_id"
@@ -363,14 +364,6 @@ class SaleOrderManagementScreen extends ControlButtonsMixin(IndependentToOrderSc
             ],
             context: this.env.session.user_context,
         });
-
-        const saleOrdersAmountUnpaid = await this.rpc({
-            model: "sale.order",
-            method: "get_order_amount_unpaid",
-            args: [[id]],
-            context: this.env.session.user_context,
-        });
-        sale_order[0].amount_unpaid = saleOrdersAmountUnpaid[sale_order[0].id];
 
         const sale_lines = await this._getSOLines(sale_order[0].order_line);
         sale_order[0].order_line = sale_lines;

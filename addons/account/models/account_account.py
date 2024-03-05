@@ -38,7 +38,7 @@ class AccountAccount(models.Model):
     name = fields.Char(string="Account Name", required=True, index='trigram', tracking=True)
     currency_id = fields.Many2one('res.currency', string='Account Currency', tracking=True,
         help="Forces all journal items in this account to have a specific currency (i.e. bank journals). If no currency is set, entries can use any currency.")
-    code = fields.Char(size=64, required=True, tracking=True)
+    code = fields.Char(size=64, required=True, tracking=True, unaccent=False)
     deprecated = fields.Boolean(default=False, tracking=True)
     used = fields.Boolean(compute='_compute_used', search='_search_used')
     account_type = fields.Selection(
@@ -64,7 +64,7 @@ class AccountAccount(models.Model):
         ],
         string="Type", tracking=True,
         required=True,
-        compute='_compute_account_type', store=True, readonly=False, precompute=True,
+        compute='_compute_account_type', store=True, readonly=False, precompute=True, index=True,
         help="Account Type is used for information purpose, to generate country-specific legal reports, and set the rules to close a fiscal year and generate opening entries."
     )
     include_initial_balance = fields.Boolean(string="Bring Accounts Balance Forward",
@@ -855,6 +855,11 @@ class AccountGroup(models.Model):
         res = self.env.cr.fetchall()
         if res:
             raise ValidationError(_('Account Groups with the same granularity can\'t overlap'))
+
+    @api.constrains('parent_id')
+    def _check_parent_not_circular(self):
+        if not self._check_recursion():
+            raise ValidationError(_("You cannot create recursive groups."))
 
     @api.model_create_multi
     def create(self, vals_list):

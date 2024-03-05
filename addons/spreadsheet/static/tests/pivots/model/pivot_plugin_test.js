@@ -17,6 +17,7 @@ import {
 import { makeDeferred, nextTick, patchWithCleanup } from "@web/../tests/helpers/utils";
 import { session } from "@web/session";
 import { RPCError } from "@web/core/network/rpc_service";
+import { getBasicServerData } from "../../utils/data";
 
 QUnit.module("spreadsheet > pivot plugin", {}, () => {
     QUnit.test("can select a Pivot from cell formula", async function (assert) {
@@ -394,6 +395,70 @@ QUnit.module("spreadsheet > pivot plugin", {}, () => {
         assert.equal(getCellValue(model, "A1"), 131);
     });
 
+    QUnit.test("evaluates only once when two pivots are loading", async function (assert) {
+        const spreadsheetData = {
+            sheets: [{ id: "sheet1" }],
+            pivots: {
+                1: {
+                    id: 1,
+                    colGroupBys: ["foo"],
+                    domain: [],
+                    measures: [{ field: "probability", operator: "avg" }],
+                    model: "partner",
+                    rowGroupBys: ["bar"],
+                },
+                2: {
+                    id: 2,
+                    colGroupBys: ["foo"],
+                    domain: [],
+                    measures: [{ field: "probability", operator: "avg" }],
+                    model: "partner",
+                    rowGroupBys: ["bar"],
+                },
+            },
+        };
+        const model = await createModelWithDataSource({
+            spreadsheetData,
+        });
+        model.config.custom.dataSources.addEventListener("data-source-updated", () =>
+            assert.step("data-source-notified")
+        );
+        setCellContent(model, "A1", '=ODOO.PIVOT("1", "probability")');
+        setCellContent(model, "A2", '=ODOO.PIVOT("2", "probability")');
+        assert.equal(getCellValue(model, "A1"), "Loading...");
+        assert.equal(getCellValue(model, "A2"), "Loading...");
+        await nextTick();
+        assert.equal(getCellValue(model, "A1"), 131);
+        assert.equal(getCellValue(model, "A2"), 131);
+        assert.verifySteps(["data-source-notified"], "evaluation after both pivots are loaded");
+    });
+
+    QUnit.test("concurrently load the same pivot twice", async function (assert) {
+        const spreadsheetData = {
+            sheets: [{ id: "sheet1" }],
+            pivots: {
+                1: {
+                    id: 1,
+                    colGroupBys: ["foo"],
+                    domain: [],
+                    measures: [{ field: "probability", operator: "avg" }],
+                    model: "partner",
+                    rowGroupBys: ["bar"],
+                },
+            },
+        };
+        const model = await createModelWithDataSource({
+            spreadsheetData,
+        });
+        // the data loads first here, when we insert the first pivot function
+        setCellContent(model, "A1", '=ODOO.PIVOT("1", "probability")');
+        assert.equal(getCellValue(model, "A1"), "Loading...");
+        // concurrently reload the same pivot
+        model.dispatch("REFRESH_PIVOT", { id: 1 });
+        await nextTick();
+        assert.equal(getCellValue(model, "A1"), 131);
+    });
+
     QUnit.test("display loading while data is not fully available", async function (assert) {
         const metadataPromise = makeDeferred();
         const dataPromise = makeDeferred();
@@ -458,6 +523,34 @@ QUnit.module("spreadsheet > pivot plugin", {}, () => {
         assert.strictEqual(getCellValue(model, "A2"), "xphone");
         assert.strictEqual(getCellValue(model, "A3"), 131);
         assert.verifySteps(["partner/fields_get", "partner/read_group"]);
+    });
+
+    QUnit.test("pivot grouped by char field which represents numbers", async function (assert) {
+        const serverData = getBasicServerData();
+        serverData.models.partner.records = [
+            { id: 1, name: "111", probability: 11 },
+            { id: 2, name: "000111", probability: 15 },
+        ];
+
+        const { model } = await createSpreadsheetWithPivot({
+            serverData,
+            arch: /*xml*/ `
+                <pivot>
+                    <field name="name" type="row"/>
+                    <field name="probability" type="measure"/>
+                </pivot>`,
+        });
+        assert.strictEqual(getCell(model, "A3").content, '=ODOO.PIVOT.HEADER(1,"name","000111")');
+        assert.strictEqual(getCell(model, "A4").content, '=ODOO.PIVOT.HEADER(1,"name",111)');
+        assert.strictEqual(getEvaluatedCell(model, "A3").value, "000111");
+        assert.strictEqual(getEvaluatedCell(model, "A4").value, "111");
+        assert.strictEqual(
+            getCell(model, "B3").content,
+            '=ODOO.PIVOT(1,"probability","name","000111")'
+        );
+        assert.strictEqual(getCell(model, "B4").content, '=ODOO.PIVOT(1,"probability","name",111)');
+        assert.strictEqual(getEvaluatedCell(model, "B3").value, 15);
+        assert.strictEqual(getEvaluatedCell(model, "B4").value, 11);
     });
 
     QUnit.test("relational PIVOT.HEADER with missing id", async function (assert) {

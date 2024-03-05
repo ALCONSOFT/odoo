@@ -179,6 +179,7 @@ class ProductTemplate(models.Model):
 
         sales_prices = pricelist._get_products_price(self, 1.0)
         show_discount = pricelist.discount_policy == 'without_discount'
+        show_strike_price = self.env.user.has_group('website_sale.group_product_price_comparison')
 
         base_sales_prices = self.price_compute('list_price', currency=pricelist.currency_id)
 
@@ -193,7 +194,7 @@ class ProductTemplate(models.Model):
             base_price = None
             price_list_contains_template = pricelist.currency_id.compare_amounts(price_reduce, base_sales_prices[template.id]) != 0
 
-            if template.compare_list_price:
+            if template.compare_list_price and show_strike_price:
                 # The base_price becomes the compare list price and the price_reduce becomes the price
                 base_price = template.compare_list_price
                 if not price_list_contains_template:
@@ -419,6 +420,14 @@ class ProductTemplate(models.Model):
     @api.model
     def _get_alternative_product_filter(self):
         return self.env.ref('website_sale.dynamic_filter_cross_selling_alternative_products').id
+
+    @api.model
+    def _get_product_types_allow_zero_price(self):
+        """
+        Returns a list of detailed types (`product.template.detailed_type`) that can ignore the
+        `prevent_zero_price_sale` rule when buying products on a website.
+        """
+        return []
 
     # ---------------------------------------------------------
     # Rating Mixin API

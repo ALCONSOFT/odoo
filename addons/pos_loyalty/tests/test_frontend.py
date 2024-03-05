@@ -1335,3 +1335,146 @@ class TestUi(TestPointOfSaleHttpCommon):
             "PosLoyaltyTour9",
             login="accountman",
         )
+
+    def test_ewallet_expiration_date(self):
+        """
+        Test for ewallet program.
+        - Collect points in EWalletProgramTour1.
+        - Use points in EWalletProgramTour2.
+        """
+        LoyaltyProgram = self.env['loyalty.program']
+        # Deactivate all other programs to avoid interference
+        (LoyaltyProgram.search([])).write({'pos_ok': False})
+        # But activate the ewallet_product_50 because it's shared among new ewallet programs.
+        self.env.ref('loyalty.ewallet_product_50').write({'active': True})
+        # Create ewallet program
+        ewallet_program = self.create_programs([('arbitrary_name', 'ewallet')])['arbitrary_name']
+        # Create test partners
+        partner_aaa = self.env['res.partner'].create({'name': 'AAAA'})
+        #Create an eWallet for partner_aaa
+        self.env['loyalty.card'].create({
+            'partner_id': partner_aaa.id,
+            'program_id': ewallet_program.id,
+            'points': 50,
+            'expiration_date': '2020-01-01',
+        })
+        self.main_pos_config.open_ui()
+        self.start_tour(
+            "/pos/web?config_id=%d" % self.main_pos_config.id,
+            "ExpiredEWalletProgramTour",
+            login="accountman",
+        )
+
+    def test_loyalty_program_with_tagged_free_product(self):
+        self.env['loyalty.program'].search([]).write({'active': False})
+
+        free_product_tag = self.env['product.tag'].create({'name': 'Free Product'})
+
+        self.env['product.product'].create([
+            {
+                'name': 'Free Product A',
+                'type': 'product',
+                'list_price': 1,
+                'available_in_pos': True,
+                'taxes_id': False,
+                'product_tag_ids': [(4, free_product_tag.id)],
+            },
+            {
+                'name': 'Free Product B',
+                'type': 'product',
+                'list_price': 1,
+                'available_in_pos': True,
+                'taxes_id': False,
+                'product_tag_ids': [(4, free_product_tag.id)],
+            },
+            {
+                'name': 'Product Test',
+                'type': 'product',
+                'list_price': 1,
+                'available_in_pos': True,
+                'taxes_id': False,
+            }
+        ])
+
+        self.env['loyalty.program'].create({
+            'name': 'Free Product with Tag',
+            'program_type': 'loyalty',
+            'applies_on': 'both',
+            'trigger': 'auto',
+            'portal_visible': True,
+            'rule_ids': [(0, 0, {
+                'reward_point_mode': 'money',
+                'minimum_qty': 1,
+            })],
+            'reward_ids': [(0, 0, {
+                'reward_type': 'product',
+                'reward_product_tag_id': free_product_tag.id,
+                'reward_product_qty': 1,
+                'required_points': 1,
+            })],
+        })
+
+        self.env['res.partner'].create({'name': 'AAA Partner'})
+        self.main_pos_config.open_ui()
+        self.start_tour(
+            "/pos/web?config_id=%d" % self.main_pos_config.id,
+            "PosLoyaltyTour10",
+            login="accountman",
+        )
+
+    def test_loyalty_program_with_next_order_coupon_free_product(self):
+        self.env['loyalty.program'].search([]).write({'active': False})
+
+        free_product = self.env['product.product'].create({
+                'name': 'Free Product',
+                'type': 'product',
+                'list_price': 1,
+                'available_in_pos': True,
+                'taxes_id': False,
+            })
+        self.env['product.product'].create({
+                'name': 'Product Test',
+                'type': 'product',
+                'list_price': 50,
+                'available_in_pos': True,
+                'taxes_id': False,
+            })
+
+        loyalty_program = self.env['loyalty.program'].create({
+            'name': 'Next Order Coupon Program',
+            'program_type': 'next_order_coupons',
+            'applies_on': 'future',
+            'trigger': 'auto',
+            'portal_visible': True,
+            'rule_ids': [(0, 0, {
+                'reward_point_mode': 'unit',
+                'minimum_amount': 100,
+                'minimum_qty': 0,
+            })],
+            'reward_ids': [(0, 0, {
+                'reward_type': 'product',
+                'reward_product_id': free_product.id,
+                'reward_product_qty': 1,
+                'required_points': 1,
+            })],
+        })
+
+        self.env['res.partner'].create({'name': 'AAA Partner'})
+        self.main_pos_config.open_ui()
+        self.start_tour(
+            "/pos/web?config_id=%d" % self.main_pos_config.id,
+            "PosLoyaltyTour11.1",
+            login="accountman",
+        )
+        coupon = loyalty_program.coupon_ids
+        self.assertEqual(len(coupon), 1, "Coupon not generated")
+        self.assertEqual(coupon.points, 3, "Coupon not generated with correct points")
+        coupon.write({"code": "123456"})
+
+        self.main_pos_config.open_ui()
+        self.start_tour(
+            "/pos/web?config_id=%d" % self.main_pos_config.id,
+            "PosLoyaltyTour11.2",
+            login="accountman",
+        )
+        self.assertEqual(coupon.points, 0, "Coupon not used")

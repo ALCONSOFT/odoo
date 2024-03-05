@@ -443,6 +443,9 @@ msgid ""
 "            (e.g. a year) and you order products within this agreement to benefit\n"
 "            from the negotiated prices."
 msgstr ""
+"Para un acuerdo marco puede registrar un contrato para un período específico\n"
+"            (por ejemplo, un año)y solicita productos dentro de este contrato para beneficiarse\n"
+"            de los precios negociados."
 
 #. module: purchase_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_requisition.view_purchase_requisition_filter
@@ -929,7 +932,7 @@ msgstr ""
 #: code:addons/purchase_requisition/models/purchase.py:0
 #, python-format
 msgid "Some not cleared"
-msgstr ""
+msgstr "Algunos no se han borrado"
 
 #. module: purchase_requisition
 #. odoo-python
@@ -938,6 +941,8 @@ msgstr ""
 msgid ""
 "Some quantities were not cleared because their status is not a RFQ status."
 msgstr ""
+"Algunas cantidades no están autorizadas porque su estado no es un estado de "
+"solicitud de presupuesto."
 
 #. module: purchase_requisition
 #: model:ir.model.fields,field_description:purchase_requisition.field_purchase_requisition__origin
@@ -986,7 +991,7 @@ msgstr "Tarifa de proveedor"
 #. module: purchase_requisition
 #: model:ir.model,name:purchase_requisition.model_purchase_order_group
 msgid "Technical model to group PO for call to tenders"
-msgstr ""
+msgstr "Modelo técnico para agrupar órdenes de compra para una licitación"
 
 #. module: purchase_requisition
 #: model_terms:ir.ui.view,arch_db:purchase_requisition.view_purchase_requisition_form
@@ -1005,6 +1010,8 @@ msgstr ""
 #: model:ir.model.fields,help:purchase_requisition.field_purchase_requisition_create_alternative__origin_po_id
 msgid "The original PO that this alternative PO is being created for."
 msgstr ""
+"La orden de compra por la que se está creando esta orden de compra "
+"alternativa."
 
 #. module: purchase_requisition
 #. odoo-python
@@ -1015,13 +1022,16 @@ msgid ""
 " from the original order has a blocking warning on it and cannot be selected"
 " to create an alternative."
 msgstr ""
+"El proveedor que tiene seleccionado, o al menos uno de los productos que "
+"está copiando de la orden original, tiene una advertencia de bloqueo y no se"
+" puede seleccionar para crear una alternativa."
 
 #. module: purchase_requisition
 #. odoo-python
 #: code:addons/purchase_requisition/models/purchase.py:0
 #, python-format
 msgid "There are no quantities to clear."
-msgstr ""
+msgstr "No hay cantidades que autorizar."
 
 #. module: purchase_requisition
 #. odoo-python
